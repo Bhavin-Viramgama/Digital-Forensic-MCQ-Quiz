@@ -510,19 +510,39 @@
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       if (state.currentScreen === 'quiz') {
-        if (e.key === 'ArrowRight' || e.key === 'n') {
-          const q = state.quizQuestions[state.quizIndex];
-          if (state.quizRevealed[q.id]) quizNext();
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+        const q = state.quizQuestions[state.quizIndex];
+        if (!q) return;
+
+        const isRevealed = !!state.quizRevealed[q.id];
+        const isLast = state.quizIndex === state.quizQuestions.length - 1;
+
+        // Next / Finish on ArrowRight, N, or Enter (when revealed)
+        if (e.key === 'ArrowRight' || e.key === 'n' || e.key === 'N' || (e.key === 'Enter' && isRevealed)) {
+          if (isRevealed) {
+            if (isLast) {
+              quizFinish();
+            } else {
+              quizNext();
+            }
+          }
         }
-        if (e.key === 'ArrowLeft' || e.key === 'p') {
+
+        // Previous on ArrowLeft or P
+        if (e.key === 'ArrowLeft' || e.key === 'p' || e.key === 'P') {
           quizPrev();
         }
-        // Quick answer with 1-4 or a-d
-        if (!state.quizRevealed[state.quizQuestions[state.quizIndex]?.id]) {
-          const q = state.quizQuestions[state.quizIndex];
-          const keyMap = { '1': 'A', '2': 'B', '3': 'C', '4': 'D', 'a': 'A', 'b': 'B', 'c': 'C', 'd': 'D' };
-          if (keyMap[e.key.toLowerCase()] && q) {
-            selectAnswer(q, keyMap[e.key.toLowerCase()]);
+
+        // Select answer option using 1-4 or A-D
+        if (!isRevealed) {
+          const keyMap = {
+            '1': 'A', '2': 'B', '3': 'C', '4': 'D',
+            'a': 'A', 'b': 'B', 'c': 'C', 'd': 'D',
+            'A': 'A', 'B': 'B', 'C': 'C', 'D': 'D'
+          };
+          if (keyMap[e.key]) {
+            selectAnswer(q, keyMap[e.key]);
           }
         }
       }

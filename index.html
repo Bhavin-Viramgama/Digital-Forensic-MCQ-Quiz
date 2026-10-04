@@ -76,6 +76,14 @@
           </div>
           <h3>Quiz Mode</h3>
           <p>Test yourself question by question. Pick answers, get instant feedback with explanations, and track your score.</p>
+          <div class="mode-shortcuts-hint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2" ry="2"/>
+              <line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/>
+              <line x1="8" y1="16" x2="16" y2="16"/>
+            </svg>
+            <span>Keyboard shortcuts supported (1-4 / A-D, Arrows, Enter)</span>
+          </div>
           <div class="mode-start">Start Quiz →</div>
         </button>
       </div>
@@ -119,6 +127,24 @@
         <button class="btn btn-primary" id="quiz-next" style="display:none;">Next →</button>
         <button class="btn btn-primary" id="quiz-finish" style="display:none;">View Results</button>
       </div>
+
+      <!-- Keyboard Shortcuts Information Bar -->
+      <div class="quiz-shortcuts-bar">
+        <div class="quiz-shortcuts-header">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2" ry="2"/>
+            <line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/>
+            <line x1="8" y1="16" x2="16" y2="16"/>
+          </svg>
+          <span>Keyboard Shortcuts</span>
+        </div>
+        <div class="quiz-shortcuts-items">
+          <span class="shortcut-item"><kbd>A</kbd><kbd>B</kbd><kbd>C</kbd><kbd>D</kbd> or <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd> Select Option</span>
+          <span class="shortcut-item"><kbd>→</kbd> or <kbd>N</kbd> / <kbd>Enter</kbd> Next</span>
+          <span class="shortcut-item"><kbd>←</kbd> or <kbd>P</kbd> Prev</span>
+        </div>
+      </div>
+    </main>
     </main>
 
 
