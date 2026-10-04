@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Forensics MCQ Quiz | GTU 3170725 CET-2</title>
+  <meta name="description" content="Practice 300 MCQ questions across 3 chapters of Digital Forensics (GTU 3170725) with quiz mode and reading mode. Detailed explanations included.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="quiz-data.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <!-- Header -->
+    <header id="main-header">
+      <div class="header-inner">
+        <div class="logo" id="logo-home" role="button" tabindex="0" aria-label="Go to home">
+          <div class="logo-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <span class="logo-text">DF Quiz</span>
+        </div>
+        <nav class="header-nav" id="header-nav" style="display:none;">
+          <button class="nav-btn" id="nav-back" aria-label="Go back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+            </svg>
+            <span>Back</span>
+          </button>
+        </nav>
+        <div class="header-badge" id="header-badge" style="display:none;">
+          <span id="badge-text"></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Home Screen -->
+    <main id="screen-home" class="screen active">
+      <div class="home-hero">
+        <div class="hero-badge">GTU 3170725 · CET-2 Preparation</div>
+        <h1 class="hero-title">
+          Digital Forensics
+          <span class="hero-title-accent">MCQ Quiz</span>
+        </h1>
+        <p class="hero-subtitle">
+          300 practice questions across 3 chapters with detailed explanations.
+          Choose a chapter to start in Quiz Mode or Reading Mode.
+        </p>
+      </div>
+      <div class="chapter-grid" id="chapter-grid"></div>
+      <div class="home-stats" id="home-stats"></div>
+    </main>
+
+    <!-- Chapter Screen (Mode Selection & Reading) -->
+    <main id="screen-chapter" class="screen">
+      <div class="chapter-header">
+        <h2 class="chapter-title" id="chapter-screen-title"></h2>
+        <p class="chapter-subtitle" id="chapter-screen-subtitle"></p>
+      </div>
+      <div class="mode-cards" style="grid-template-columns: 1fr;">
+        <button class="mode-card" id="mode-quiz" aria-label="Start Quiz Mode">
+          <div class="mode-icon mode-icon-quiz">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <h3>Quiz Mode</h3>
+          <p>Test yourself question by question. Pick answers, get instant feedback with explanations, and track your score.</p>
+          <div class="mode-start">Start Quiz →</div>
+        </button>
+      </div>
+      
+      <!-- Integrated Reading Mode Content -->
+      <div class="read-controls" style="margin-top: 2rem;">
+        <div class="read-search-wrapper">
+          <svg class="read-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" class="read-search" id="read-search" placeholder="Search questions...">
+        </div>
+        <div class="read-section-tabs" id="read-section-tabs"></div>
+      </div>
+      <div class="read-list" id="read-list"></div>
+    </main>
+
+    <!-- Quiz Mode Screen -->
+    <main id="screen-quiz" class="screen">
+      <div class="quiz-progress">
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
+        </div>
+        <div class="quiz-progress-info">
+          <span id="quiz-progress-text">Question 1 / 100</span>
+          <span id="quiz-score-text">Score: 0/0</span>
+        </div>
+      </div>
+      <div class="quiz-card" id="quiz-card">
+        <div class="quiz-section-badge" id="quiz-section-badge"></div>
+        <div class="quiz-question-num" id="quiz-question-num"></div>
+        <h3 class="quiz-question-text" id="quiz-question-text"></h3>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-feedback" id="quiz-feedback" style="display:none;">
+          <div class="quiz-feedback-header" id="quiz-feedback-header"></div>
+          <div class="quiz-feedback-explanation" id="quiz-feedback-explanation"></div>
+        </div>
+      </div>
+      <div class="quiz-actions">
+        <button class="btn btn-secondary" id="quiz-prev" style="display:none;">← Previous</button>
+        <button class="btn btn-primary" id="quiz-next" style="display:none;">Next →</button>
+        <button class="btn btn-primary" id="quiz-finish" style="display:none;">View Results</button>
+      </div>
+    </main>
+
+
+
+    <!-- Results Screen -->
+    <main id="screen-results" class="screen">
+      <div class="results-card" id="results-card">
+        <div class="results-score-ring" id="results-score-ring">
+          <svg viewBox="0 0 120 120">
+            <circle class="ring-bg" cx="60" cy="60" r="52"/>
+            <circle class="ring-fill" id="ring-fill" cx="60" cy="60" r="52"/>
+          </svg>
+          <div class="ring-text">
+            <span class="ring-percent" id="ring-percent">0%</span>
+            <span class="ring-label">Score</span>
+          </div>
+        </div>
+        <h2 class="results-title" id="results-title">Quiz Complete!</h2>
+        <p class="results-summary" id="results-summary"></p>
+        <div class="results-stats" id="results-stats"></div>
+        <div class="results-actions">
+          <button class="btn btn-primary" id="results-retry">Retry Quiz</button>
+          <button class="btn btn-secondary" id="results-review">Review Answers</button>
+          <button class="btn btn-ghost" id="results-home">Back to Home</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
